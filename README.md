@@ -25,7 +25,11 @@ THEN the saved events persist
 
 
 ## Usage
+Landing page displays current date inside the header and shows past, present, and future color coded time blocks.
+![screenshot](./assets/Scheduler%20screenshot%20main.png)
 
+When a new event is entered and saved, it is stored in your computer's local storage.
+![screenshot](./assets/scheduler%20local%20storage.png)
 ## Installation
 This webpage runs in the browser. No Installation or set up is required.
 ## Credits
