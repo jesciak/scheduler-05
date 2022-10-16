@@ -3,14 +3,10 @@ var currentDate = document.querySelector('#currentDay');
 var currentDay = moment();
 currentDate.textContent = currentDay.format("dddd MMMM Do");
 
-
-
-
 // creation of blocks for standard business hours
 var timeBlock = $('.time-block').addClass("row");
 var blockEntry = $("<p>").addClass("entry");
 timeBlock.append(blockEntry);
-
 
 var nowTime = parseInt(moment().format('H'));
 
@@ -56,7 +52,6 @@ $("textarea").each(function () {
         $(this).addClass("future");
     }
     console.log(id);
-
 });
 
 // event handler when the save button is clicked
