@@ -1,60 +1,90 @@
-$(document).ready(function () {
 
-    //displays current day at top of calendar
-    $('#currentDay').text(moment().format("dddd MMMM Do"));
+var currentDate = document.querySelector('#currentDay');
+var currentDay = moment();
+currentDate.textContent = currentDay.format("dddd MMMM Do");
+
+//displays current day at top of calendar
+
+// $('#currentDay').text(moment().format("dddd MMMM Do"));
+
+var timeBlock = $('.time-block').addClass("row");
+var blockEntry = $("<p>").addClass("entry");
+timeBlock.append(blockEntry);
 
 
+var nowTime = parseInt(moment().format('H'));
 
-    var nowtTime = moment().format('H'));
+var loadEvent = function (eventTime) {
 
+    eventTime.forEach((element) => {
+        console.log(element);
+        let text = localStorage.getItem(parseInt(element.time));
+        console.log(text);
 
-    $('.time-block').each(function () {
-        var timeBlock = parseInt(s(this).attr('id').split('-')[1]);
-        var
-    
-        if (timeBlock < nowTime) {
-            $(this).addClass("past");
-        }
-        else if (timeBlock === nowTime) {
-            $(this).removeClass("past");
-            $(this).addClass("present");
-        }
-        else {
-        
-            $(this).removeClass("past");
-            $(this).removeClass("present");
-            $(this).addClass("future");
+        if (text) {
+            element.text.val(text);
         }
     });
-
-
-whatHour();
-
-
-//     var displayEl = document.getElementById  ('displayElement');
-//     displayEl.innerHTML= nowtTime;
-    
-//     function timeColor(){
-//         var currentTime = 
-//         var
+};
+// function saveEvent(index)
+// {
+//     var texArea=$('#textArea' + index);
+//     if (textArea.val() !==)
+//     {
+//         schedule[index].blockEntry =textArea.val();
 //     }
-
-// function addInput ()
-// var textInput = $(`block1,block2, bloc)
-//creating new HTML elements to the DOM 
-
-// const timeBlock =$('.time-block').addClass('row');
-// const textInput =$('<p>').addClass('input');
-
-// timeBlock.append(textInput);
+// }
 
 
-// var block1 =
-// var block2 =
-// var block3=
-// var block4=
-// var block5=
-// var block6=
-// var block7=
-// var block8=
-// var block9=
+var getEvent = function () {
+    var arr = [];
+    $("textarea").each(function (index, el) {
+        arr.push({
+            time: $(el).attr("id"),
+            text: $(el),
+        });
+    });
+    loadEvent(arr);
+   
+};
+
+$("textarea").each(function () {
+    const color = $(this);
+    const id = parseInt(color.attr("id"));
+
+    if (id < nowTime) {
+        $(this).addClass("past");
+    }
+
+    if (id === nowTime) {
+        $(this).addClass("present");
+    }
+    if (id > nowTime) {
+        $(this).addClass("future");
+    }
+});
+
+
+$('button.saveBtn').click(function (event, loadEvent) {
+    event.preventDefault();
+
+    var clickEl = $(this).siblings('textarea');
+
+    var time = clickEl.attr('id');
+    console.log(time);
+
+    var text = clickEl.val().trim();
+
+    if (time && text !== '') {
+        localStorage.setItem(time, text);
+        return alert("Event saved to local storage!")
+    }
+    else {
+        alert("No event saved!")
+    }
+
+    loadEvent();
+});
+
+getEvent();
+
