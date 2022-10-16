@@ -37,6 +37,7 @@ This webpage runs in the browser. No Installation or set up is required.
 
 ## Links
 Github Repository:
-https://github.com/jesciak/js-fundamentals-quiz-04.git
+https://github.com/jesciak/scheduler-05.git
 
 Deployed Site:
+https://jesciak.github.io/scheduler-05/
